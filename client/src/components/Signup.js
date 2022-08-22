@@ -4,18 +4,11 @@ import validator from 'validator'
 import {
   Paper,
   Container,
-  Link,
   Stack,
   Button,
   Box,
   Divider,
-  Avatar,
-  Typography,
   TextField,
-  FilledInput,
-  InputAdornment,
-  IconButton,
-  InputLabel,
   FormControl,
   FormHelperText,
 } from '@mui/material'
@@ -23,6 +16,8 @@ import theme from '../styles/theme'
 
 
 function Signup() {
+
+  // all of the state variables for necessary fields
   const [values, setValues] = useState({
     fullName: '',
       DOB: '',
@@ -36,6 +31,8 @@ function Signup() {
       dietaryPreferences: '', 
       specialNeeds: '',
   })
+
+  // all the error handling for incorrect input
   const [errors, setErrors] = useState({
     fullName: false,
       DOB: false,
@@ -52,6 +49,7 @@ function Signup() {
     fetchErrorMsg: '',
   })
 
+  //different validation as user types - uses validator library
   const handleChange = (fieldName) => (event) => {
     const currValue = event.target.value
     switch (fieldName) {
@@ -89,7 +87,7 @@ function Signup() {
     }
     setValues({ ...values, [fieldName]: event.target.value })
   }
-
+//on click of download button tries to download file from mongodb
   const handleClick = async (event) => {
     event.preventDefault()
 
@@ -110,7 +108,7 @@ function Signup() {
         return Promise.reject(error);
     }
 }
-
+// on submission of form posts state
   const handleSubmit = async (event) => {
     event.preventDefault()
 

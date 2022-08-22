@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
       .json({ msg: 'Zipcode should be at least 5 digits' })
   }
 
-  const user = await UserS.findOne({ email }) // finding user in db
+  const user = await UserS.findOne({ email }) // finding user in db to make sure no duplicates
   if (user) return res.status(400).json({ msg: 'User already exists' })
 
   const newUser = new UserS({fullName,DOB,phoneNumber, email, address, city,state, zipcode, jainCenter, dietaryPreferences, specialNeeds })
